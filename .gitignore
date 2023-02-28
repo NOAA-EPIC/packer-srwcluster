@@ -1,0 +1,7 @@
+*.pem
+.DS_Store
+*.zip
+*.dmp
+*.exe
+*.jar
+*.log

@@ -5,6 +5,18 @@
 variable "aws_ami_regions" {
   description = "List of regions to copy the AMIs to. Tags and attributes are copied along with the AMIs"
   type        = list(string)
+  default     = ["us-east-1","us-east-2","us-west-1","us-west-2"]
+}
+
+variable "aws_ami_groups" {
+  description = "List of groups that have access to launch the resulting AMIs,`all` will make the AMI publicly accessible"
+  type        = list(string)
+  default     = []
+}
+
+variable "aws_ami_users" {
+  description = "List of account IDs that have access to launch the resulting AMI"
+  type        = list(string)
   default     = []
 }
 
@@ -75,8 +87,10 @@ variable "root_volume_size" {
 ###
 
 source "amazon-ebs" "base" {
-  ami_name                    = "srw-cluster.x86_64-gp3"
+  ami_name                    = "srw-cluster-{{date}}.x86_64-gp3"
   ami_regions                 = var.aws_ami_regions
+  ami_users                   = var.aws_ami_users
+  ami_groups                  = var.aws_ami_groups
   associate_public_ip_address = true
   communicator                = "ssh"
   ena_support                 = true
@@ -97,7 +111,7 @@ source "amazon-ebs" "base" {
   ssh_timeout                           = "60m"
   ssh_username                          = var.aws_ssh_username
   subnet_id                             = "subnet-04bae583ce498ab48"
-  tags                                  = { Name = "" } # Empty name tag avoids inheriting "Packer Builder"
+  tags                                  = { Name = "SRW-Cluster-{{date}}" }
   temporary_security_group_source_cidrs = var.aws_temporary_security_group_source_cidrs
 }
 
