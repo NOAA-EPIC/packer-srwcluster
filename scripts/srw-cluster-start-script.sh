@@ -126,7 +126,7 @@ echo "Spack Stack Install Completed!"
 echo "Beginning UFS SRW Install"
 source /root/.bashenv
 module unload curl/7.49.1
-module use /opt/spack-stack/spack/share/spack/modules/linux-ubuntu20.04-skylake_avx512
+module use /opt/spack-stack/spack/share/spack/modules/linux-*
 module load curl/7.49.1
 cd /opt
 mv /opt/spack-stack/ufs-srweather-app .
