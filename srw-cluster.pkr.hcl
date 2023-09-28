@@ -2,10 +2,11 @@
 # Variables for AWS builders
 ###
 
+#Add multiple regions: default     = ["us-east-1","us-east-2"]
 variable "aws_ami_regions" {
   description = "List of regions to copy the AMIs to. Tags and attributes are copied along with the AMIs"
   type        = list(string)
-  default     = ["us-east-1","us-east-2","us-west-1","us-west-2"]
+  default     = ["us-east-1"]
 }
 
 variable "aws_ami_groups" {
