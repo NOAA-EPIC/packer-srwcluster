@@ -1,0 +1,63 @@
+---
+# ParallelCluster configuration for SRW app
+
+Region: us-east-1
+Image:
+  Os: ubuntu2004
+  CustomAmi: ami-0bd984628f4fd05ca #Must modify
+HeadNode:
+  InstanceType: c5.2xlarge
+  Networking:
+    SubnetId: subnet-07bd52a747ba1e525 #Must modify
+  Ssh:
+    KeyName: EPIC_RSA
+  LocalStorage:
+    RootVolume:
+      Size: 330
+      VolumeType: gp3
+      Iops: 10000
+      Throughput: 1000
+  Iam:
+    AdditionalIamPolicies:
+      - Policy: arn:aws:iam::aws:policy/AmazonS3FullAccess
+  CustomActions:
+    OnNodeConfigured:
+      Script: s3://epic-sandbox-srw/cluster_start_script_v3.sh #Must modify
+Scheduling:
+  Scheduler: slurm
+  SlurmSettings:
+    Dns:
+      DisableManagedDns: true
+  SlurmQueues:
+  - Name: srw
+    ComputeSettings:
+      LocalStorage:
+        RootVolume:
+          Size: 350
+          VolumeType: gp3
+          Iops: 10000
+          Throughput: 1000
+    ComputeResources:
+    - Name: c5n
+      InstanceType: c5n.18xlarge
+      Efa:
+        Enabled: true
+      MinCount: 0
+      MaxCount: 2
+    Networking:
+      SubnetIds:
+      - subnet-07bd52a747ba1e525 #Must modify
+      AssignPublicIp: true
+      PlacementGroup:
+        Enabled: true
+    CustomActions:
+      OnNodeConfigured:
+        Script: s3://epic-sandbox-srw/cluster_start_script_v3.sh #Must modify
+SharedStorage:
+  - MountDir: /scratch
+    Name: ebs
+    StorageType: Ebs
+    EbsSettings:
+      VolumeType: gp3
+      DeletionPolicy: Delete
+      Size: 100
