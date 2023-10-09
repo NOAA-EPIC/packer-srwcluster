@@ -2,6 +2,10 @@
 # Variables for AWS builders
 ###
 
+locals {
+  now = formatdate("YYYYMMDD-hhmmss", timestamp())
+}
+
 #Add multiple regions: default     = ["us-east-1","us-east-2"]
 variable "aws_ami_regions" {
   description = "List of regions to copy the AMIs to. Tags and attributes are copied along with the AMIs"
@@ -59,6 +63,7 @@ variable "aws_temporary_security_group_source_cidrs" {
   default     = ["0.0.0.0/0"]
 }
 
+
 ###
 # Variables for Azure builders
 ###
@@ -88,7 +93,7 @@ variable "root_volume_size" {
 ###
 
 source "amazon-ebs" "base" {
-  ami_name                    = "srw-cluster-{{date}}.x86_64-gp3"
+  ami_name                    = "srw-cluster-${local.now}.x86_64-gp3"
   ami_regions                 = var.aws_ami_regions
   ami_users                   = var.aws_ami_users
   ami_groups                  = var.aws_ami_groups
@@ -111,8 +116,8 @@ source "amazon-ebs" "base" {
   ssh_pty                               = true
   ssh_timeout                           = "60m"
   ssh_username                          = var.aws_ssh_username
-  subnet_id                             = "subnet-04bae583ce498ab48"
-  tags                                  = { Name = "SRW-Cluster-{{date}}" }
+  subnet_id                             = "subnet-04d911e4b55853ef7"
+  tags                                  = { Name = "SRW-Cluster-${local.now}" }
   temporary_security_group_source_cidrs = var.aws_temporary_security_group_source_cidrs
 }
 

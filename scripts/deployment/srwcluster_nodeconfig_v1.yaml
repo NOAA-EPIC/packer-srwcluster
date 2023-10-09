@@ -3,11 +3,11 @@
 Region: us-east-1
 Image:
   Os: ubuntu2004
-  CustomAmi: ami-054e4bb4e3d9dc95e #Must modify
+  CustomAmi: ami-054e4bb4e3d9dc95e #Must modify 
 HeadNode:
   InstanceType: c5.2xlarge
   Networking:
-    SubnetId: subnet-07bd52a747ba1e525 #Must modify
+    SubnetId: subnet-04d911e4b55853ef7 #Must modify (public subnet)
   Ssh:
     KeyName: EPIC_RSA
   LocalStorage:
@@ -45,8 +45,8 @@ Scheduling:
       MaxCount: 2
     Networking:
       SubnetIds:
-      - subnet-07bd52a747ba1e525 #Must modify
-      AssignPublicIp: true
+      - subnet-04d911e4b55853ef7 #Must modify
+      AssignPublicIp: false 
       PlacementGroup:
         Enabled: true
     CustomActions:
