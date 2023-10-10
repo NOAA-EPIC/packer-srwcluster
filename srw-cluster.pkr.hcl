@@ -50,9 +50,9 @@ variable "aws_source_ami_filter_ubuntu_2004_hvm" {
     owners = list(string)
   })
   default = {
-    name = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
+    name = "aws-parallelcluster-3.7.1-ubuntu-2004-lts-hvm-x86_64-202309151532 2023-09-15T15-36-35.608Z"
     owners = [
-      "099720109477"
+      "247102896272"
     ]
   }
 }
