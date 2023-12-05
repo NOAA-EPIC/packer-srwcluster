@@ -18,7 +18,8 @@ HeadNode:
       Throughput: 1000
   Iam:
     AdditionalIamPolicies:
-      - Policy: arn:aws:iam::aws:policy/AmazonS3FullAccess
+      - Policy: arn:aws:iam::aws:policy/AmazonS3FullAccess 
+      - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore 
   CustomActions:
     OnNodeConfigured:
       Script: s3://epic-srw-sandbox/cluster_start_script_v3.sh #Must modify
