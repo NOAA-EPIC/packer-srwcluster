@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  AWS CloudFormation template for deploying Linux bastion hosts in an
-  auto-scaling group in an existing VPC. (qs-1qup6ra99)
+  AWS CloudFormation template for deploying Linux bastion hosts from a launch template into an
+  existing VPC. (qs-1qup6ra99)
 Metadata:
   QuickStartDocumentation:
     EntrypointName: Launch into an existing VPC
@@ -170,7 +170,7 @@ Parameters:
     Description:
       Name of an existing public/private key pair. If you do not have one in this AWS Region,
       please create it before continuing. If left empty, AWS Systems Manager Session Manager can still be used to connect to the instance.
-    Default: ''
+    Default: 'epic_workshop'
   NumBastionHosts:
     Type: String
     Description: The number of bastion hosts to create. The maximum number is four.
@@ -761,6 +761,12 @@ Resources:
               - logs:PutMetricFilter
               - logs:CreateLogGroup
             Resource: !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${BastionMainLogGroup}:*
+          - Sid: UpdateParameterStore 
+            Effect: Allow
+            Action:
+              - ssm:PutParameter
+              - ssm:DeleteParameter
+            Resource: !Sub arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/bastion_public_key
           - Sid: Global
             Effect: Allow
             Action:
@@ -930,6 +936,10 @@ Resources:
               source ./cfn-tools.sh
 
               popd /tmp
+              
+              su ec2-user -c 'ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa'
+              aws ssm delete-parameter --name bastion_public_key --region us-east-1 || true 
+              aws ssm put-parameter --region us-east-1 --name bastion_public_key --type String --value "$(cat /home/ec2-user/.ssh/id_rsa.pub)"
 
               qs_update-os || qs_err;
               qs_bootstrap_pip || qs_err " pip bootstrap failed ";
