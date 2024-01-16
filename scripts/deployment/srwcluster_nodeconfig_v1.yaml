@@ -3,13 +3,13 @@
 Region: us-east-1
 Image:
   Os: ubuntu2004
-  CustomAmi: ami-054e4bb4e3d9dc95e #Must modify
+  CustomAmi: ami-030cf29e6d5d8724a #Must modify
 HeadNode:
   InstanceType: c5.2xlarge
   Networking:
-    SubnetId: subnet-07bd52a747ba1e525 #Must modify
+    SubnetId: ami-030cf29e6d5d8724a #Must modify
   Ssh:
-    KeyName: EPIC_RSA
+    KeyName: epic_workshop
   LocalStorage:
     RootVolume:
       Size: 330
@@ -21,7 +21,7 @@ HeadNode:
       - Policy: arn:aws:iam::aws:policy/AmazonS3FullAccess
   CustomActions:
     OnNodeConfigured:
-      Script: s3://epic-sandbox-srw/cluster_start_script_v3.sh #Must modify
+      Script: s3://epic.sandbox.srw/cluster_start_script_v3.sh #Must modify
 Scheduling:
   Scheduler: slurm
   SlurmSettings:
@@ -45,13 +45,13 @@ Scheduling:
       MaxCount: 2
     Networking:
       SubnetIds:
-      - subnet-07bd52a747ba1e525 #Must modify
+      - subnet-04d911e4b55853ef7 #Must modify
       AssignPublicIp: true
       PlacementGroup:
         Enabled: true
     CustomActions:
       OnNodeConfigured:
-        Script: s3://epic-sandbox-srw/cluster_start_script_v3.sh #Must modify
+        Script: s3://epic.sandbox.srw/cluster_start_script_v3.sh #Must modify
 SharedStorage:
   - MountDir: /scratch
     Name: ebs
