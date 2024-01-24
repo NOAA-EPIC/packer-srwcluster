@@ -60,7 +60,7 @@ cd 1.3.6
 ./INSTALL 2>&1 | tee rocoto-1.3.6.install.log
 # Prepare a modulefile for rocoto
 cd $PREFIX
-export ROCOTOBIN=$PREFIX/1.3.6
+export ROCOTOBIN=$PREFIX/1.3.6/bin
 export ROCOTOLIB=$PREFIX/1.3.6/lib
 mkdir $PREFIX/modulefiles
 mkdir $PREFIX/modulefiles/rocoto
