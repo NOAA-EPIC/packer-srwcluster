@@ -26,3 +26,7 @@ sudo apt update
 ./configure --prefix=/opt/apps
 make install
 source /opt/apps/lmod/lmod/init/bash
+
+#Install ruby and ruby-dev
+sudo apt-get install ruby
+sudo apt-get install ruby-dev
