@@ -4,7 +4,7 @@ tar -xvf go1.21.6.linux-amd64.tar.gz
 cd go
 export PATH=$PATH:/home/ubuntu/go/bin
 export GOPATH=/home/ubuntu/go
-export GOBIN=/home/ubuntu/bin
+export GOBIN=/home/ubuntu/go/bin
 
 ###Install singularity###
 cd /home/ubuntu
