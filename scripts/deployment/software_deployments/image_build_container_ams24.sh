@@ -82,7 +82,7 @@ module use /$PREFIX/modulefiles
 module load rocoto/1.3.6
 
 ###Add needed data###
-cd /data
+cd /scratch
 wget https://noaa-ufs-srw-pds.s3.amazonaws.com/current_srw_release_data/fix_data.tgz
 tar xfz fix_data.tgz
 wget https://noaa-ufs-srw-pds.s3.amazonaws.com/current_srw_release_data/gst_data.tgz
