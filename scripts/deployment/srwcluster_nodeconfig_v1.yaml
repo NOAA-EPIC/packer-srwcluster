@@ -3,7 +3,7 @@
 Region: us-east-1
 Image:
   Os: ubuntu2004
-  CustomAmi: ami-030cf29e6d5d8724a #Must modify 
+  CustomAmi: ami-08100890884d98d9d #Must modify 
 HeadNode:
   InstanceType: c5.2xlarge
   Networking:
