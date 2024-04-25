@@ -9,7 +9,7 @@ HeadNode:
   Networking:
     SubnetId: subnet-078043a467c391dfd #Must modify (public subnet)
   Ssh:
-    KeyName: EPIC_RSA
+    KeyName: epic_workshop
   LocalStorage:
     RootVolume:
       Size: 330
@@ -46,13 +46,13 @@ Scheduling:
       MaxCount: 2
     Networking:
       SubnetIds:
-      - subnet-078043a467c391dfd #Must modify
-      AssignPublicIp: false 
+      - subnet-07bd52a747ba1e525 #Must modify
+      AssignPublicIp: true
       PlacementGroup:
         Enabled: true
     CustomActions:
       OnNodeConfigured:
-        Script: s3://epic-srw-sandbox/cluster_start_script_v3.sh #Must modify
+        Script: s3://epic-sandbox-srw/cluster_start_script_v3.sh #Must modify
 SharedStorage:
   - MountDir: /scratch
     Name: ebs
