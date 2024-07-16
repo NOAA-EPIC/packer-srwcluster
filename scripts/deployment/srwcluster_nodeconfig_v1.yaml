@@ -52,7 +52,7 @@ Scheduling:
         Enabled: true
     CustomActions:
       OnNodeConfigured:
-        Script: s3://epic-sandbox-srw/cluster_start_script_v3.sh #Must modify
+        Script: s3://epic-srw-sandbox/cluster_start_script_v3.sh #Must modify
 SharedStorage:
   - MountDir: /scratch
     Name: ebs
