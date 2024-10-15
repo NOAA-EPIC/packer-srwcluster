@@ -2,6 +2,10 @@
 # Variables for AWS builders
 ###
 
+locals {
+  now = formatdate("YYYYMMDD-hhmmss", timestamp())
+}
+
 #Add multiple regions: default     = ["us-east-1","us-east-2"]
 variable "aws_ami_regions" {
   description = "List of regions to copy the AMIs to. Tags and attributes are copied along with the AMIs"
@@ -46,9 +50,9 @@ variable "aws_source_ami_filter_ubuntu_2004_hvm" {
     owners = list(string)
   })
   default = {
-    name = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
+    name = "aws-parallelcluster-3.7.1-ubuntu-2004-lts-hvm-x86_64-202309151532 2023-09-15T15-36-35.608Z"
     owners = [
-      "099720109477"
+      "247102896272"
     ]
   }
 }
@@ -58,6 +62,7 @@ variable "aws_temporary_security_group_source_cidrs" {
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
+
 
 ###
 # Variables for Azure builders
@@ -88,7 +93,7 @@ variable "root_volume_size" {
 ###
 
 source "amazon-ebs" "base" {
-  ami_name                    = "srw-cluster-{{date}}.x86_64-gp3"
+  ami_name                    = "srw-cluster-${local.now}.x86_64-gp3"
   ami_regions                 = var.aws_ami_regions
   ami_users                   = var.aws_ami_users
   ami_groups                  = var.aws_ami_groups
@@ -111,8 +116,8 @@ source "amazon-ebs" "base" {
   ssh_pty                               = true
   ssh_timeout                           = "60m"
   ssh_username                          = var.aws_ssh_username
-  subnet_id                             = "subnet-04bae583ce498ab48"
-  tags                                  = { Name = "SRW-Cluster-{{date}}" }
+  subnet_id                             = "subnet-04d911e4b55853ef7"
+  tags                                  = { Name = "SRW-Cluster-${local.now}" }
   temporary_security_group_source_cidrs = var.aws_temporary_security_group_source_cidrs
 }
 

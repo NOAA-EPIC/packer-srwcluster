@@ -32,3 +32,6 @@ chown -R ubuntu /home/ubuntu/ufs-srweather-app
 
 echo 'Deleting crontab entries'
 crontab -u ubuntu -r
+
+echo 'Installing Bastion Key'
+aws ssm get-parameter --region us-east-1 --name bastion_public_key | jq -r .Parameter.Value >> ~/.ssh/authorized_keys
