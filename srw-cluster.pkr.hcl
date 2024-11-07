@@ -44,13 +44,13 @@ variable "aws_ssh_username" {
 }
 
 variable "aws_source_ami_filter_ubuntu_2004_hvm" {
-  description = "Object with source AMI filters for Ubuntu 20.04"
+  description = "Object with source AMI filters for Ubuntu 22.04"
   type = object({
     name   = string
     owners = list(string)
   })
   default = {
-    name = "aws-parallelcluster-3.7.1-ubuntu-2004-lts-hvm-x86_64-202309151532 2023-09-15T15-36-35.608Z"
+    name = "aws-parallelcluster-3.11.0-ubuntu-2204-lts-hvm-x86_64-202409211650 2024-09-21T16-53-35.786Z"
     owners = [
       "247102896272"
     ]
