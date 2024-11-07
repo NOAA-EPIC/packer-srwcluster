@@ -43,7 +43,7 @@ variable "aws_ssh_username" {
   default     = "ubuntu"
 }
 
-variable "aws_source_ami_filter_ubuntu_2004_hvm" {
+variable "aws_source_ami_filter_ubuntu_2204_hvm" {
   description = "Object with source AMI filters for Ubuntu 22.04"
   type = object({
     name   = string
@@ -82,7 +82,7 @@ variable "aws_temporary_security_group_source_cidrs" {
 variable "root_volume_size" {
   description = "Size in GB of the root volume"
   type        = number
-  default     = 230
+  default     = 330
 }
 
 
@@ -130,14 +130,14 @@ source "amazon-ebs" "base" {
 build {
   source "amazon-ebs.base" {
     ami_description = "SRW Cluster"
-    name            = "SRW-Cluster-Ubuntu-20.04-hvm"
+    name            = "SRW-Cluster-Ubuntu-22.04-hvm"
     source_ami_filter {
       filters = {
         virtualization-type = "hvm"
-        name                = var.aws_source_ami_filter_ubuntu_2004_hvm.name
+        name                = var.aws_source_ami_filter_ubuntu_2204_hvm.name
         root-device-type    = "ebs"
       }
-      owners      = var.aws_source_ami_filter_ubuntu_2004_hvm.owners
+      owners      = var.aws_source_ami_filter_ubuntu_2204_hvm.owners
       most_recent = true
     }
   }
