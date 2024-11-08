@@ -93,8 +93,8 @@ cd /opt/spack-stack/envs/unified-dev
 spack env activate -p .
 cd /opt/spack-stack
 . ./setup.sh 
-spack concretize 2>&1 > log.concretize
-spack install --verbose 2>&1 > log.install
+spack concretize 2>&1 | tee log.concretize
+spack install --verbose 2>&1 | tee log.install
 tee /opt/spack-stack/envs/unified-dev/site/modules.yaml <<EOF1
 modules:
   default:
