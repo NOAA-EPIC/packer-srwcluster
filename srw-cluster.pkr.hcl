@@ -28,7 +28,7 @@ variable "aws_ami_users" {
 variable "aws_instance_type" {
   description = "EC2 instance type to use while building the AMIs"
   type        = string
-  default     = "c6i.2xlarge"
+  default     = "c5n.4xlarge"
 }
 
 variable "aws_region" {
@@ -116,6 +116,7 @@ source "amazon-ebs" "base" {
   ssh_pty                               = true
   ssh_timeout                           = "60m"
   ssh_username                          = var.aws_ssh_username
+  ssh_interface                         = "private_ip"
   subnet_id                             = "subnet-04d911e4b55853ef7"
   tags                                  = { Name = "SRW-Cluster-${local.now}" }
   temporary_security_group_source_cidrs = var.aws_temporary_security_group_source_cidrs
@@ -145,6 +146,7 @@ build {
   provisioner "shell" {
     execute_command = "{{ .Vars }} sudo -E '{{ .Path }}'"
     script          = "${path.root}/scripts/srw-cluster-start-script.sh"
+    valid_exit_codes = [0,1,2]
   }
 }
 ###

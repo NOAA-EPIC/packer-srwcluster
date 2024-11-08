@@ -1,25 +1,25 @@
 #!/bin/bash
 mkdir -p /opt/build 
 mkdir -p /opt/dist
-apt-get update -yq --allow-unauthenticated 
-apt-get -yq upgrade
-apt install -y gcc g++ gfortran gdb
-apt install -y build-essential
-apt install -y libkrb5-dev
-apt install -y m4
-apt install -y git
-apt install -y git-lfs
-apt install -y bzip2
-apt install -y unzip
-apt install -y automake
-apt install -y autopoint
-apt install -y gettext
-apt install -y texlive
-apt install -y libcurl4-openssl-dev
-apt install -y libssl-dev
-apt install -y lua5.3
-apt install -y liblua5.3-dev
-apt install -y lua-posix
+DEBIAN_FRONTEND=noninteractive apt-get update -yq --allow-unauthenticated 
+DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade
+DEBIAN_FRONTEND=noninteractive apt install -y gcc g++ gfortran gdb
+DEBIAN_FRONTEND=noninteractive apt install -y build-essential
+DEBIAN_FRONTEND=noninteractive apt install -y libkrb5-dev
+DEBIAN_FRONTEND=noninteractive apt install -y m4
+DEBIAN_FRONTEND=noninteractive apt install -y git
+DEBIAN_FRONTEND=noninteractive apt install -y git-lfs
+DEBIAN_FRONTEND=noninteractive apt install -y bzip2
+DEBIAN_FRONTEND=noninteractive apt install -y unzip
+DEBIAN_FRONTEND=noninteractive apt install -y automake
+DEBIAN_FRONTEND=noninteractive apt install -y autopoint
+DEBIAN_FRONTEND=noninteractive apt install -y gettext
+DEBIAN_FRONTEND=noninteractive apt install -y texlive
+DEBIAN_FRONTEND=noninteractive apt install -y libcurl4-openssl-dev
+DEBIAN_FRONTEND=noninteractive apt install -y libssl-dev
+DEBIAN_FRONTEND=noninteractive apt install -y lua5.3
+DEBIAN_FRONTEND=noninteractive apt install -y liblua5.3-dev
+DEBIAN_FRONTEND=noninteractive apt install -y lua-posix
 # install cmake
 cd /opt/build 
 curl -LO https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-linux-x86_64.sh && /bin/bash cmake-3.23.1-linux-x86_64.sh --prefix=/usr/local --skip-license
@@ -32,7 +32,7 @@ ln -s /usr/share/lmod/lmod/init/profile /etc/profile.d/z00_lmod.sh
 echo "dash dash/sh boolean false" | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 ls -l /bin/sh
-apt-get update -yq --allow-unauthenticated
+DEBIAN_FRONTEND=noninteractive apt-get update -yq --allow-unauthenticated
 #rm /etc/profile.d/modules.sh
 #dpkg -S /etc/profile.d/modules.sh
 cd /opt
@@ -71,7 +71,7 @@ spack:
     unify: when_possible
 
  
-view: false
+  view: false
   include:
   - site
   - common
