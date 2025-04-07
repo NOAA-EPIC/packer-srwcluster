@@ -149,4 +149,4 @@ module use /opt/spack-stack/spack/share/spack/lmod/Core
 module load stack-intel/2021.10.0
 module load stack-openmpi
 # Added due to SRW needing backward compatibility with FMS 2023.01
-spack install --add fms@2023.01
+spack install --add fms@2024.01
