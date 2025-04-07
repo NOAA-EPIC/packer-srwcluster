@@ -1,9 +1,9 @@
 Region: us-east-1
 Image:
   Os: ubuntu2204 
-  CustomAmi: ami-0c976e156db51cb27
+  CustomAmi: ami-07d66d94dc60464c5 
 HeadNode:
-  InstanceType: c5n.4xlarge
+  InstanceType: c7i.8xlarge
   Networking:
     SubnetId: subnet-078043a467c391dfd
   Ssh:
@@ -23,13 +23,13 @@ Scheduling:
   SlurmQueues:
   - Name: compute
     ComputeResources:
-    - Name: c5n18xlarge
+    - Name: c7i8xlarge
       Instances:
-      - InstanceType: c5n.18xlarge
+      - InstanceType: c7i.8xlarge
       MinCount: 0
       MaxCount: 2
       Efa:
-        Enabled: true
+        Enabled: false 
     Networking:
       PlacementGroup:
         Enabled: true
