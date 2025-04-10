@@ -127,10 +127,10 @@ compilers:
 - compiler:
     spec: intel@=2021.10.0
     paths:
-      cc: /opt/spack-stack/spack/opt/spack/linux-ubuntu22.04-skylake_avx512/gcc-11.4.0/intel-oneapi-compilers-2023.2.1-3xn2ybliqcwcftqzx27l2ig5ufm24f26/compiler/latest/linux/bin/intel64/icc
-      cxx: /opt/spack-stack/spack/opt/spack/linux-ubuntu22.04-skylake_avx512/gcc-11.4.0/intel-oneapi-compilers-2023.2.1-3xn2ybliqcwcftqzx27l2ig5ufm24f26/compiler/latest/linux/bin/intel64/icpc
-      f77: /opt/spack-stack/spack/opt/spack/linux-ubuntu22.04-skylake_avx512/gcc-11.4.0/intel-oneapi-compilers-2023.2.1-3xn2ybliqcwcftqzx27l2ig5ufm24f26/compiler/latest/linux/bin/intel64/ifort
-      fc: /opt/spack-stack/spack/opt/spack/linux-ubuntu22.04-skylake_avx512/gcc-11.4.0/intel-oneapi-compilers-2023.2.1-3xn2ybliqcwcftqzx27l2ig5ufm24f26/compiler/latest/linux/bin/intel64/ifort
+      cc: /opt/spack-stack/spack/opt/spack/linux-ubuntu22.04-sapphirerapids/gcc-11.4.0/intel-oneapi-compilers-2023.2.1-3xn2ybliqcwcftqzx27l2ig5ufm24f26/compiler/latest/linux/bin/intel64/icc
+      cxx: /opt/spack-stack/spack/opt/spack/linux-ubuntu22.04-sapphirerapids/gcc-11.4.0/intel-oneapi-compilers-2023.2.1-3xn2ybliqcwcftqzx27l2ig5ufm24f26/compiler/latest/linux/bin/intel64/icpc
+      f77: /opt/spack-stack/spack/opt/spack/linux-ubuntu22.04-sapphirerapids/gcc-11.4.0/intel-oneapi-compilers-2023.2.1-3xn2ybliqcwcftqzx27l2ig5ufm24f26/compiler/latest/linux/bin/intel64/ifort
+      fc: /opt/spack-stack/spack/opt/spack/linux-ubuntu22.04-sapphirerapids/gcc-11.4.0/intel-oneapi-compilers-2023.2.1-3xn2ybliqcwcftqzx27l2ig5ufm24f26/compiler/latest/linux/bin/intel64/ifort
     flags: {}
     operating_system: ubuntu22.04
     target: x86_64
@@ -157,4 +157,12 @@ DEBIAN_FRONTEND=noninteractive apt install -y software-properties-common
 DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:apptainer/ppa 
 DEBIAN_FRONTEND=noninteractive apt-get update -yq --allow-unauthenticated 
 DEBIAN_FRONTEND=noninteractive apt install -y apptainer 
+DEBIAN_FRONTEND=noninteractive apt install -y ruby-full
+DEBIAN_FRONTEND=noninteractive apt install -y imagemagick
+
+#Install Required Ruby Gems
+
+DEBIAN_FRONTEND=noninteractive gem install sqlite3 
+DEBIAN_FRONTEND=noninteractive gem install thread 
+DEBIAN_FRONTEND=noninteractive gem install pool 
 
