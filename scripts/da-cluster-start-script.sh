@@ -149,8 +149,6 @@ spack stack setup-meta-modules
 module use /opt/spack-stack/spack/share/spack/lmod/Core
 module load stack-intel/2021.10.0
 module load stack-openmpi
-# Added due to LandDA needing backward compatibility with FMS 2024.01
-spack install --add fms@2024.01
 
 #Install Apptainer/Singularity
 DEBIAN_FRONTEND=noninteractive apt install -y software-properties-common
@@ -162,7 +160,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y imagemagick
 
 #Install Required Ruby Gems
 
-DEBIAN_FRONTEND=noninteractive gem install sqlite3 
-DEBIAN_FRONTEND=noninteractive gem install thread 
-DEBIAN_FRONTEND=noninteractive gem install pool 
+gem install sqlite3 
+gem install thread 
+gem install pool 
 
