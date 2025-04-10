@@ -20,6 +20,7 @@ DEBIAN_FRONTEND=noninteractive apt install -y libssl-dev
 DEBIAN_FRONTEND=noninteractive apt install -y lua5.3
 DEBIAN_FRONTEND=noninteractive apt install -y liblua5.3-dev
 DEBIAN_FRONTEND=noninteractive apt install -y lua-posix
+
 # install cmake
 cd /opt/build 
 curl -LO https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-linux-x86_64.sh && /bin/bash cmake-3.23.1-linux-x86_64.sh --prefix=/usr/local --skip-license
@@ -148,5 +149,12 @@ spack stack setup-meta-modules
 module use /opt/spack-stack/spack/share/spack/lmod/Core
 module load stack-intel/2021.10.0
 module load stack-openmpi
-# Added due to SRW needing backward compatibility with FMS 2023.01
+# Added due to LandDA needing backward compatibility with FMS 2024.01
 spack install --add fms@2024.01
+
+#Install Apptainer/Singularity
+DEBIAN_FRONTEND=noninteractive apt install -y software-properties-common
+DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:apptainer/ppa 
+DEBIAN_FRONTEND=noninteractive apt-get update -yq --allow-unauthenticated 
+DEBIAN_FRONTEND=noninteractive apt install -y apptainer 
+
