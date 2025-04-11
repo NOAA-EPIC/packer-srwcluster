@@ -157,11 +157,4 @@ DEBIAN_FRONTEND=noninteractive apt-get update -yq --allow-unauthenticated
 DEBIAN_FRONTEND=noninteractive apt install -y apptainer 
 DEBIAN_FRONTEND=noninteractive apt install -y ruby-full
 DEBIAN_FRONTEND=noninteractive apt install -y imagemagick
-DEBIAN_FRONTEND=noninteractive apt install -y build-essential  
-
-#Install Required Ruby Gems
-
-gem install sqlite3 
-gem install thread 
-gem install pool 
 
