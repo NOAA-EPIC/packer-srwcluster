@@ -158,3 +158,24 @@ DEBIAN_FRONTEND=noninteractive apt install -y apptainer
 DEBIAN_FRONTEND=noninteractive apt install -y ruby-full
 DEBIAN_FRONTEND=noninteractive apt install -y imagemagick
 
+#Install Rocoto, LandDA container and required datasets.
+
+su - ubuntu <<'EOF'
+
+sudo gem install sqlite3
+sudo gem install thread
+sudo gem install pool
+
+git clone https://github.com/christopherwharrop/rocoto.git
+cd rocoto/
+./INSTALL
+
+cd /home/ubuntu
+wget https://noaa-ufs-land-da-pds.s3.amazonaws.com/current_land_da_release_data/v2.0.0/ubuntu22.04-intel-landda-release-public-v2.0.0.img
+wget https://noaa-ufs-land-da-pds.s3.amazonaws.com/current_land_da_release_data/v2.0.0/LandDAInputDatav2.0.0.tar.gz
+
+tar -vxzf LandDAInputDatav2.0.0.tar.gz
+
+echo 'export PATH="$PATH:/home/ubuntu/rocoto/bin"' >> .bashrc
+EOF
+
