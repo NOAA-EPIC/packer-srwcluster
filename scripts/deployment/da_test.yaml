@@ -1,7 +1,7 @@
 Region: us-east-1
 Image:
   Os: ubuntu2204 
-  CustomAmi: ami-01a532448d424de0b 
+  CustomAmi: ami-010413285868d8730 
 HeadNode:
   InstanceType: c7i.8xlarge
   Networking:
@@ -18,6 +18,9 @@ HeadNode:
     AdditionalIamPolicies:
       - Policy: arn:aws:iam::aws:policy/AmazonS3FullAccess
       - Policy: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+  CustomActions:
+      OnNodeConfigured:
+        Script: s3://epic-srw-sandbox/da_cluster_script.sh 
 Scheduling:
   Scheduler: slurm
   SlurmQueues:
